@@ -14,5 +14,7 @@ root.render(
     strokeWidth={3}
     renderTms={10}
     isPlaying={true}
+    radius={60}
+    units=""
   />
 );

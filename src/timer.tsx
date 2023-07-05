@@ -7,7 +7,6 @@ import "./style.css";
 type CountdownTimerProps = {
   isPlaying: boolean;
 } & Partial<typeof defaultProps>;
-
 const defaultProps = {
   seconds: 60,
   radius: 120,
@@ -15,8 +14,8 @@ const defaultProps = {
   textColor: "red",
   strokeWidth: 3,
   renderTms: 10,
+  units: "s",
 };
-
 const styles = {
   countdownContainer: {
     display: "flex",
@@ -93,7 +92,10 @@ function CountdownTimer(propsIn: CountdownTimerProps) {
             justifyContent: "center",
           }}
         >
-          <p style={textStyles}>{secondsLeft}s</p>
+          <p style={textStyles}>
+            {secondsLeft}
+            {props.units}
+          </p>
         </div>
         <div style={styles.circleContainer}>
           <svg
