@@ -1,5 +1,23 @@
-.button{
-    border-radius:20px;
-    background-color: black;
-    -webkit-text-fill-color: white;
+.center{
+    text-align: center;
+    justify-content: center;
+}
+#wrapEvrything{
+    position: relative;
+    top:0;
+}
+#unitsLeftWarper{
+    display: flex;
+}
+#circleWarper{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#svg{
+        transform: rotateY(-180deg) rotateZ(-90deg);
+        overflow: visible;
 }

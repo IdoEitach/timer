@@ -5,49 +5,16 @@ import React from "react";
 import "./style.css";
 
 type CountdownTimerProps = {
-  isPlaying: boolean;
+  seconds: number;
 } & Partial<typeof defaultProps>;
 const defaultProps = {
-  seconds: 60,
+  isPlaying: false,
   radius: 120,
   strokeColor: "red",
   textColor: "red",
   strokeWidth: 3,
   renderTms: 10,
   units: "s",
-};
-const styles = {
-  countdownContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "relative",
-    margin: "auto",
-  },
-  svg: {
-    transform: "rotateY(-180deg) rotateZ(-90deg)",
-    overflow: "visible",
-  },
-  circleContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
-    position: "absolute",
-    top: 0,
-    width: "100%",
-  } as React.CSSProperties,
-  button: {
-    fontSize: 16,
-    padding: "15px 40px",
-    margin: "10px auto 30px",
-    display: "block",
-    backgroundColor: "#4d4d4d",
-    color: "lightgray",
-    border: "none",
-    cursor: "pointer",
-    outline: 0,
-    borderRadius: "10px",
-  } as React.CSSProperties,
 };
 
 function CountdownTimer(propsIn: CountdownTimerProps) {
@@ -60,7 +27,7 @@ function CountdownTimer(propsIn: CountdownTimerProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (props.isPlaying) {
-        setTimeLeft(Math.max(timeLeft - 10, 0));
+        setTimeLeft(Math.max(timeLeft - props.renderTms, 0));
       }
     }, props.renderTms);
 
@@ -80,29 +47,19 @@ function CountdownTimer(propsIn: CountdownTimerProps) {
     fontSize: props.radius * 2 * 0.3,
   };
 
-  const secondsLeft = (timeLeft / 1000).toFixed();
+  const unitsLeft = (timeLeft / 1000).toFixed();
 
   return (
     <div>
-      <div style={{ position: "relative", alignItems: "center" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+      <div id="wrapEvrything" className="center">
+        <div id="unitsLeftWarper" className="center">
           <p style={textStyles}>
-            {secondsLeft}
+            {unitsLeft}
             {props.units}
           </p>
         </div>
-        <div style={styles.circleContainer}>
-          <svg
-            style={styles.svg}
-            height={props.radius * 2}
-            width={props.radius * 2}
-          >
+        <div id="circleWarper">
+          <svg id="svg" height={props.radius * 2} width={props.radius * 2}>
             <circle
               strokeDasharray={circumference}
               strokeDashoffset={props.isPlaying ? strokeDashoffset() : 0}
